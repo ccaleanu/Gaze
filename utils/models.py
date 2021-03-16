@@ -1,3 +1,6 @@
+from tensorflow.keras import layers
+from tensorflow.keras.models import Sequential
+
 def mpii_model():  
     model = Sequential([
       #layers.experimental.preprocessing.Rescaling(1./255, input_shape=(img_height, img_width, 1)),
@@ -12,6 +15,6 @@ def mpii_model():
       layers.Dropout(0.3),
       layers.Flatten(),
       layers.Dense(128, activation='relu'),
-      layers.Dense(11)
+      layers.Dense(2)
     ])
     return model

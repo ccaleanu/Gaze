@@ -2,69 +2,78 @@ from utils import config, loaddb, train, utils
 import numpy as np
 
 while True:
-    print("Select mode:\n1. Preprocess\n2. Train\n3. Predict - not implemented\n")
-    mode = input()
+    print("\n************ MAIN MENU ************"
+          "\n* Select mode:                    *"
+          "\n*    1. Preprocess                *"
+          "\n*    2. Train                     *"
+          "\n*    3. Predict - not implemented *"
+          "\n*    Press ENTER to exit.         *"
+          "\n***********************************")
+    mode = input('Option: ')
 
     #PREPROCESS mode
     if(mode == '1'):
-        print("Select database to PREPROCESS: \n"
-              "0. Quit\n"
-              "1. Columbia  - not implemented\n"
-              "2. MPII\n"
-              "3. To be defined - not implemented\n")
-        preprocess_db = input()
+        print("\n************ PREPROCESS MENU ************"
+              "\n* Select database to preprocess:        *"
+              "\n*    1. Columbia  - not implemented     *"
+              "\n*    2. MPII                            *"
+              "\n*    3. To be defined - not implemented *"
+              "\n*    Hit ENTER to return to MAIN MENU   *"
+              "\n*****************************************")
+        preprocess_db = input('Option: ')
         
         if(preprocess_db == '1'):
-            print("Preprocess Columbia\nNot implemented. Quitting...")
+            print("Preprocess Columbia\nNot implemented. Returning to MAIN MENU.")
         elif(preprocess_db == '2'):
             print("Preprocessing MPII...")
             img, gzs = utils.get_data(config.path_data)
             np.savez(config.dbpath_mpii, image=img, gaze=gzs)
             print("Done!")
         elif(preprocess_db == '3'):
-            print("Preprocess TBD\nNot implemented. Quitting...")
+            print("Preprocess TBD\nNot implemented. Returning to MAIN MENU.")
         else:
-            print("Quitting")
             exit
             
     #TRAIN mode
     elif(mode == '2'):
-        print("Select database to TRAIN on: \n"
-              "0. Quit\n"
-              "1. Columbia  - not implemented\n"
-              "2. MPII\n"
-              "3. To be defined - not implemented\n")
-        train_db = input()
+        print("\n*************** TRAIN MENU **************"
+              "\n* Select database to train on:          *"
+              "\n*    1. Columbia  - not implemented     *"
+              "\n*    2. MPII                            *"
+              "\n*    3. To be defined - not implemented *"
+              "\n*    Hit ENTER to return to MAIN MENU   *"
+              "\n*****************************************")
+        train_db = input('Option: ')
         
         if(train_db == '1'):
-            print("Train on Columbia\nNot implemented. Quitting...")
+            print("Train on Columbia\nNot implemented. Returning to MAIN MENU.")
         elif(train_db == '2'):
             print("Train on MPII")
             train.train_mpii()
         elif(train_db == '3'):
-            print("Train on TBD\nNot implemented. Quitting...")
+            print("Train on TBD\nNot implemented. Returning to MAIN MENU.")
         else:
-            print("Quitting")
             exit
             
     #PREDICT mode        
     elif(mode == '3'):
-        print("PREDICT mode is not implemented yet.")
-        print("Select database to PREDICT on: \n"
-              "0. Quit\n"
-              "1. Columbia  - not implemented\n"
-              "2. MPII\n"
-              "3. To be defined - not implemented\n")
-        predict_db = input()
+        print("\n************** PREDICT MENU *************"
+              "\n* Select database to predict on:        *"
+              "\n*    1. Columbia  - not implemented     *"
+              "\n*    2. MPII - not implemented          *"
+              "\n*    3. To be defined - not implemented *"
+              "\n*    Hit ENTER to return to MAIN MENU   *"
+              "\n*****************************************")
+        predict_db = input('Option: ')
         
+        #In predict mode a new menu in which you will need to select the predictor needs to be added
         if(predict_db == '1'):
-            print("Predict on Columbia\nNot implemented. Quitting...")
+            print("Predict on Columbia\nNot implemented. Returning to MAIN MENU.")
         elif(predict_db == '2'):
-            print("Predict on MPII - not implemented")
+            print("Predict on MPII - not implemented. Returning to MAIN MENU.")
         elif(predict_db == '3'):
-            print("Predict on TBD\nNot implemented. Quitting...")
+            print("Predict on TBD\nNot implemented. Returning to MAIN MENU.")
         else:
-            print("Quitting")
             exit
     else:
         print("Exiting...")

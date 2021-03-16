@@ -1,8 +1,7 @@
 import numpy as np
 import os
 import scipy.io as sio
-from keras.backend import cos, sin, sqrt
-from keras.backend import mean
+from keras.backend import cos, sin, sqrt, mean
 from tensorflow import acos
 
 #MPII utils
