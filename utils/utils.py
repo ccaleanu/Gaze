@@ -25,7 +25,8 @@ def degrees_mean_error(y_true, y_pred):
     x_p, y_p, z_p = convert_gaze_2d_3d(y_pred)
     x_t, y_t, z_t = convert_gaze_2d_3d(y_true)
     angles = mean(x_p * x_t + y_p * y_t + z_p * z_t)
-    return acos(angles) * 180 / np.pi
+    error_value = (acos(angles) * 180 / np.pi)
+    return error_value
     
 #Preprocess MPII
 def read_mat(path_mat):

@@ -1,6 +1,7 @@
 from tensorflow.keras import layers
 from tensorflow.keras.models import Sequential
 
+#MPII Model
 def mpii_model():  
     model = Sequential([
       #layers.experimental.preprocessing.Rescaling(1./255, input_shape=(img_height, img_width, 1)),

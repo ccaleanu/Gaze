@@ -1,6 +1,10 @@
 import numpy as np
 
-#MPII Gaze
+#Columbia dataset
+def load_columbia():
+    print("Columbia dataset loading method")
+
+#MPII Gaze dataset
 def load_mpii(path):
     print("Loading MPII dataset...")
     data = np.load(path)
@@ -17,9 +21,7 @@ def load_mpii(path):
     test_images = test_images.astype('float16') / 255
     print('Dataset loaded')
     return train_images, train_gazes
-    
-def load_columbia():
-    print("Columbia dataset loading method")
-    
+
+# TBD dataset
 def load_tbd_dataset():
     Print("TBD dataset loading method")

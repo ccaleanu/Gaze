@@ -46,12 +46,12 @@ while True:
         train_db = input('Option: ')
         
         if(train_db == '1'):
-            print("Train on Columbia\nNot implemented. Returning to MAIN MENU.")
+            print("\nTrain on Columbia\nNot implemented. Returning to MAIN MENU.")
         elif(train_db == '2'):
-            print("Train on MPII")
+            print("\nTrain on MPII")
             train.train_mpii()
         elif(train_db == '3'):
-            print("Train on TBD\nNot implemented. Returning to MAIN MENU.")
+            print("\nTrain on TBD\nNot implemented. Returning to MAIN MENU.")
         else:
             exit
             
