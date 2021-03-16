@@ -1,10 +1,10 @@
 #Datapath for Normalized MPII
-path_data = 'C:/Users/Adrian/Desktop/workinggaze/databases/mpii/Data/Normalized'
+path_data = './databases/mpii/Data/Normalized'
 
 #Databases path
-dbpath_cave = ''
-dbpath_mpii = 'C:/Users/Adrian/Desktop/workinggaze/databases/mpii/out.npz'
-dbpath_tbd = ''
+dbpath_cave = './databases/columbia'
+dbpath_mpii = './databases/mpii/out.npz'
+dbpath_tbd = './databases/tbd'
 
 #Training config
 epochs=10
