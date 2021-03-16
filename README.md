@@ -1,5 +1,6 @@
 # Gaze
 
 Added the code without the database.  
-Run main.py.  
-First run the preprocessing, then train
+  
+Edit config.py and modify the database path.  
+Run main.py and first choose to preprocess the database to be able to train afterwards. Preprocess needs to be run only once.
