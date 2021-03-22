@@ -38,7 +38,7 @@ while True:
     elif(mode == '2'):
         print("\n*************** TRAIN MENU **************"
               "\n* Select database to train on:          *"
-              "\n*    1. Columbia  - not implemented     *"
+              "\n*    1. Columbia                        *"
               "\n*    2. MPII                            *"
               "\n*    3. To be defined - not implemented *"
               "\n*    Hit ENTER to return to MAIN MENU   *"
@@ -46,7 +46,8 @@ while True:
         train_db = input('Option: ')
         
         if(train_db == '1'):
-            print("\nTrain on Columbia\nNot implemented. Returning to MAIN MENU.")
+            print("\nTrain on Columbia")
+            train.train_columbia()
         elif(train_db == '2'):
             print("\nTrain on MPII")
             train.train_mpii()

@@ -19,3 +19,4 @@ def mpii_model():
       layers.Dense(2)
     ])
     return model
+   

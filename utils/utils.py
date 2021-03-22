@@ -4,6 +4,9 @@ import scipy.io as sio
 from keras.backend import cos, sin, sqrt, mean
 from tensorflow import acos
 
+import tensorflow as tf
+from utils import train, config
+
 #MPII utils
 def convert_gaze_3d_2d(vect):
     x, y, z = vect
@@ -69,3 +72,28 @@ def get_data(path_data):
                 gazes.append(convert_gaze_3d_2d(right_gazes[i]))
 
     return images, gazes
+    
+#Columbia utils
+def get_label(file_path):
+    class_names = np.array(sorted([item.name for item in config.dbpath_cave.glob('*') if item.name != "LICENSE.txt"]))
+    print(class_names)
+    # convert the path to a list of path components
+    parts = tf.strings.split(file_path, os.path.sep)
+    # The second to last is the class-directory
+    one_hot = parts[-2] == class_names
+    # Integer encode the label
+    return tf.argmax(one_hot)
+
+def decode_img(img):
+    # convert the compressed string to a 3D uint8 tensor
+    img = tf.image.decode_jpeg(img, channels=1)
+    # resize the image to the desired size
+    print(img, [config.img_height, config.img_width])
+    return tf.image.resize(img, [config.img_height, config.img_width])
+
+def process_path(file_path):
+    label = get_label(file_path)
+    # load the raw data from the file as a string
+    img = tf.io.read_file(file_path)
+    img = decode_img(img)
+    return img, label
