@@ -1,4 +1,5 @@
-from utils import loaddb, utils, config, models
+import config
+from utils import loaddb, utils, models
 from keras.optimizers import RMSprop
 import numpy as np
 
@@ -12,17 +13,12 @@ def train_mpii():
     history = model.fit(x_train, y_train, epochs=config.epochs, batch_size=config.batch_size)
     return 0
     
-def train_columbia():
-    image_count = len(list(config.dbpath_cave.glob('**/*.jpg')))
-    #image_count = len(list(glob('./databases/columbia/**/*.jpg')))
+def train_ak():
+    image_count = len(list(config.database_path.glob('**/*.jpg')))
     print("# of images found:", image_count)
 
-    list_ds = tf.data.Dataset.list_files(str(config.dbpath_cave/'*/*.jpg'), shuffle=False)
+    list_ds = tf.data.Dataset.list_files(str(config.database_path/'*/*.jpg'), shuffle=False)
     list_ds = list_ds.shuffle(image_count, reshuffle_each_iteration=False)
-
-    #Added to get_label
-    #class_names = np.array(sorted([item.name for item in config.dbpath_cave.glob('*') if item.name != "LICENSE.txt"]))
-    #print(class_names)
     
     # Set `num_parallel_calls` so multiple images are loaded/processed in parallel.
     AUTOTUNE = tf.data.experimental.AUTOTUNE
@@ -35,22 +31,21 @@ def train_columbia():
     output_node = ak.Normalization()(input_node)
     output_node = ak.ImageAugmentation(horizontal_flip=False, vertical_flip=False, rotation_factor=False, zoom_factor=False)(output_node)
     output_node = ak.ClassificationHead()(output_node)
+    
     clf = ak.AutoModel(
         inputs=input_node,
         outputs=output_node,
         overwrite=True,
         max_trials=config.max_trials,
-        directory=config.outpath_cave)
+        directory=config.outpath_mpii)
     # Feed the tensorflow Dataset to the classifier.
-    #clf.fit(features, labels, epochs=10)
 
-    split = 5000
+    split = config.split
     x_val = features[split:]
     y_val = labels[split:]
     x_train = features[:split]
     y_train = labels[:split]
 
-    # for this example 4h should be enough
     clf.fit(
         x_train,
         y_train,
@@ -72,4 +67,4 @@ def train_columbia():
 
     print(type(model))  # <class 'tensorflow.python.keras.engine.training.Model'>
 
-    model.save("model_autokeras.h5")
+    model.save(config.output_path + "model_autokeras.h5")

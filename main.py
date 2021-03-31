@@ -1,4 +1,5 @@
-from utils import config, loaddb, train, utils
+import config
+from utils import loaddb, train, utils
 import numpy as np
 
 while True:
@@ -47,10 +48,16 @@ while True:
         
         if(train_db == '1'):
             print("\nTrain on Columbia")
-            train.train_columbia()
+            config.database_path = config.dbpath_cave_ak
+            config.output_path = config.outpath_cave
+            train.train_ak()
         elif(train_db == '2'):
             print("\nTrain on MPII")
-            train.train_mpii()
+            config.database_path = config.dbpath_mpii_ak
+            config.output_path = config.outpath_mpii
+            #Comment one or the other to train with AutoKeras or with a defined model
+            train.train_ak()
+            #train.train_mpii()
         elif(train_db == '3'):
             print("\nTrain on TBD\nNot implemented. Returning to MAIN MENU.")
         else:

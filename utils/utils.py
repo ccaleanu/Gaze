@@ -5,7 +5,8 @@ from keras.backend import cos, sin, sqrt, mean
 from tensorflow import acos
 
 import tensorflow as tf
-from utils import train, config
+import config
+from utils import train
 
 #MPII utils
 def convert_gaze_3d_2d(vect):
@@ -75,7 +76,7 @@ def get_data(path_data):
     
 #Columbia utils
 def get_label(file_path):
-    class_names = np.array(sorted([item.name for item in config.dbpath_cave.glob('*') if item.name != "LICENSE.txt"]))
+    class_names = np.array(sorted([item.name for item in config.database_path.glob('*') if item.name != "LICENSE.txt"]))
     print(class_names)
     # convert the path to a list of path components
     parts = tf.strings.split(file_path, os.path.sep)
