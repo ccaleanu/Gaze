@@ -8,9 +8,22 @@ import tensorflow as tf
 
 def train_mpii():
     x_train, y_train = loaddb.load_mpii(config.dbpath_mpii)
-    model = models.mpii_model()
-    model.compile(optimizer=RMSprop(learning_rate=0.0001), loss=utils.degrees_mean_error, metrics=['acc'])
+    # model = models.mpii_model()
+    # model.compile(optimizer=RMSprop(learning_rate=0.0001), loss=utils.degrees_mean_error, metrics=['acc'])
+    
+    #Try AllClassic on
+    num_classes = 536
+    
+    myModel = __import__(config.myModelType + '.' + 'AllClassic', fromlist=['AllClassic'])
+    myClassifier = getattr(myModel, 'AllClassic')
+    
+    model = myClassifier.build(num_classes)
+    model.compile(optimizer='adam',
+                    loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+                    metrics=['accuracy'])
+    #---------------------------------------------------------------------------------------  
     history = model.fit(x_train, y_train, epochs=config.epochs, batch_size=config.batch_size)
+    
     return 0
     
 def train_ak():
@@ -66,5 +79,6 @@ def train_ak():
     model = clf.export_model()
 
     print(type(model))  # <class 'tensorflow.python.keras.engine.training.Model'>
-
     model.save(config.output_path + "model_autokeras.h5")
+    
+    return 0

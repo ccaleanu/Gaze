@@ -28,4 +28,17 @@ split=5000 #for AutoKeras
 #Img settings
 img_height = 135
 img_width = 300
-channels = 1
+depth = 1
+
+#For AllClassic
+myModelType = 'model.classic'
+myModelName = 'MobileNetV2'
+
+img_height = 36
+img_width = 60
+weights={'imagenet', None}
+weights=None
+trainable = {True, False}
+trainable = True
+AUG = True
+PREPROC = True
