@@ -25,4 +25,7 @@ utils/
    -- models.py: custom defined models  
    -- train.py: training functions, where the models are loaded and actually trained  
    -- utils.py: useful functions: convert gaze points, custom loss functions, reading files functions  
- 
+  
+   
+!!! For MPII AutoKeras the path is: mpii_database_folder/Data/Original/ClassesFolder/images.jpg !!!  
+ In the current state, using all the images, I have a MemoryError: Unable to allocate 158. KiB for an array with shape (135, 300, 1) and data type float32  

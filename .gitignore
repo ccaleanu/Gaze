@@ -1,6 +1,2 @@
 databases/**
-utils/__pycache__/config.cpython-38.pyc
-utils/__pycache__/loaddb.cpython-38.pyc
-utils/__pycache__/models.cpython-38.pyc
-utils/__pycache__/train.cpython-38.pyc
-utils/__pycache__/utils.cpython-38.pyc
+output/**

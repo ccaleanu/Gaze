@@ -1,4 +1,5 @@
-from utils import config, loaddb, train, utils
+import config
+from utils import loaddb, train, utils
 import numpy as np
 
 while True:
@@ -38,7 +39,7 @@ while True:
     elif(mode == '2'):
         print("\n*************** TRAIN MENU **************"
               "\n* Select database to train on:          *"
-              "\n*    1. Columbia  - not implemented     *"
+              "\n*    1. Columbia                        *"
               "\n*    2. MPII                            *"
               "\n*    3. To be defined - not implemented *"
               "\n*    Hit ENTER to return to MAIN MENU   *"
@@ -46,10 +47,17 @@ while True:
         train_db = input('Option: ')
         
         if(train_db == '1'):
-            print("\nTrain on Columbia\nNot implemented. Returning to MAIN MENU.")
+            print("\nTrain on Columbia")
+            config.database_path = config.dbpath_cave_ak
+            config.output_path = config.outpath_cave
+            train.train_ak()
         elif(train_db == '2'):
             print("\nTrain on MPII")
-            train.train_mpii()
+            config.database_path = config.dbpath_mpii_ak
+            config.output_path = config.outpath_mpii
+            #Comment one or the other to train with AutoKeras or with a defined model
+            #train.train_ak()
+            train.train_mpii() 
         elif(train_db == '3'):
             print("\nTrain on TBD\nNot implemented. Returning to MAIN MENU.")
         else:
@@ -78,3 +86,5 @@ while True:
     else:
         print("Exiting...")
         break
+        
+#should define all menus and then just call them. should be easier and more organized
