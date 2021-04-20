@@ -88,7 +88,7 @@ class AllClassic:
         '''
         
         headModel = tf.keras.layers.Dropout(0.2)(headModel)
-        headModel = tf.keras.layers.Dense(num_classes, activation="softmax")(headModel)
+        headModel = tf.keras.layers.Dense(num_classes)(headModel)
         # place the head FC model on top of the base model (this will become
         # the actual model we will train)
         model = tf.keras.Model(inputs, headModel)

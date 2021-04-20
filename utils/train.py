@@ -1,6 +1,6 @@
 import config
 from utils import loaddb, utils, models
-from keras.optimizers import RMSprop
+from tensorflow.keras.optimizers import RMSprop
 import numpy as np
 
 import autokeras as ak
@@ -12,14 +12,14 @@ def train_mpii():
     # model.compile(optimizer=RMSprop(learning_rate=0.0001), loss=utils.degrees_mean_error, metrics=['acc'])
     
     #Try AllClassic on
-    num_classes = 536
+    num_classes = 2
     
     myModel = __import__(config.myModelType + '.' + 'AllClassic', fromlist=['AllClassic'])
     myClassifier = getattr(myModel, 'AllClassic')
     
     model = myClassifier.build(num_classes)
     model.compile(optimizer='adam',
-                    loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+                    loss=tf.keras.losses.MeanSquaredError(),
                     metrics=['accuracy'])
     #---------------------------------------------------------------------------------------  
     history = model.fit(x_train, y_train, epochs=config.epochs, batch_size=config.batch_size)

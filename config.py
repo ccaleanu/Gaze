@@ -26,8 +26,8 @@ max_trials=2 #for AutoKeras
 split=5000 #for AutoKeras
 
 #Img settings
-img_height = 135
-img_width = 300
+#img_height = 135
+#img_width = 300
 depth = 1
 
 #For AllClassic
