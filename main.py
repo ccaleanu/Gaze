@@ -35,7 +35,7 @@ def train_method_menu():
           "\n*    1. Manual                         *"
           "\n*    2. AllClassic                     *"
           "\n*    3. AutoKeras                      *"
-          "\n*    Hit ENTER to return to TRAIN MENU *"
+          "\n*    Hit ENTER to return to MAIN MENU *"
           "\n****************************************")
           
 def predict_menu():
