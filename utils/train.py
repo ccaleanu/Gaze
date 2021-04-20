@@ -7,7 +7,7 @@ import autokeras as ak
 import tensorflow as tf
 
 def train_mpii():
-    x_train, y_train = loaddb.load_mpii(config.dbpath_mpii)
+    x_train, y_train, x_test, y_test = loaddb.load_mpii(config.dbpath_mpii)
     # model = models.mpii_model()
     # model.compile(optimizer=RMSprop(learning_rate=0.0001), loss=utils.degrees_mean_error, metrics=['acc'])
     
@@ -22,7 +22,7 @@ def train_mpii():
                     loss=tf.keras.losses.MeanSquaredError(),
                     metrics=['accuracy'])
     #---------------------------------------------------------------------------------------  
-    history = model.fit(x_train, y_train, epochs=config.epochs, batch_size=config.batch_size)
+    history = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=config.epochs, batch_size=config.batch_size)
     
     return 0
     

@@ -20,7 +20,7 @@ def load_mpii(path):
     test_images = np.reshape(test_images, (len(test_images), 36, 60, 1))
     test_images = test_images.astype('float16') / 255
     print('Dataset loaded')
-    return train_images, train_gazes
+    return train_images, train_gazes, test_images, test_gazes
 
 # TBD dataset
 def load_tbd_dataset():
