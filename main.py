@@ -68,7 +68,7 @@ while True:
             print("Preprocess TBD\nNot implemented. Returning to MAIN MENU.")
         else:
             exit
-            
+
     #TRAIN mode
     elif(mode == '2'):
         train_menu()
@@ -101,7 +101,7 @@ while True:
             print("\nTrain on TBD\nNot implemented. Returning to MAIN MENU.")
         else:
             exit
-            
+
     #PREDICT mode        
     elif(mode == '3'):
         predict_menu()
@@ -119,4 +119,3 @@ while True:
     else:
         print("Exiting...")
         break
-        
