@@ -40,5 +40,5 @@ weights={'imagenet', None}
 weights=None
 trainable = {True, False}
 trainable = True
-AUG = True
+AUG = False
 PREPROC = True

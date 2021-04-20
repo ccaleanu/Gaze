@@ -2,7 +2,7 @@ import config
 from utils import loaddb, train, utils
 import numpy as np
 
-while True:
+def main_menu():
     print("\n************ MAIN MENU ************"
           "\n* Select mode:                    *"
           "\n*    1. Preprocess                *"
@@ -10,17 +10,51 @@ while True:
           "\n*    3. Predict - not implemented *"
           "\n*    Press ENTER to exit.         *"
           "\n***********************************")
+          
+def process_menu():
+    print("\n************ PREPROCESS MENU ************"
+          "\n* Select database to preprocess:        *"
+          "\n*    1. Columbia  - not implemented     *"
+          "\n*    2. MPII                            *"
+          "\n*    3. To be defined - not implemented *"
+          "\n*    Hit ENTER to return to MAIN MENU   *"
+          "\n*****************************************")
+          
+def train_menu():
+    print("\n*************** TRAIN MENU **************"
+          "\n* Select database to train on:          *"
+          "\n*    1. Columbia                        *"
+          "\n*    2. MPII                            *"
+          "\n*    3. To be defined - not implemented *"
+          "\n*    Hit ENTER to return to MAIN MENU   *"
+          "\n*****************************************")
+          
+def train_method_menu():
+    print("\n************** METHOD MENU *************"
+          "\n* Select method to train with:         *"
+          "\n*    1. Manual                         *"
+          "\n*    2. AllClassic                     *"
+          "\n*    3. AutoKeras                      *"
+          "\n*    Hit ENTER to return to TRAIN MENU *"
+          "\n****************************************")
+          
+def predict_menu():
+    print("\n************** PREDICT MENU *************"
+          "\n* Select database to predict on:        *"
+          "\n*    1. Columbia  - not implemented     *"
+          "\n*    2. MPII - not implemented          *"
+          "\n*    3. To be defined - not implemented *"
+          "\n*    Hit ENTER to return to MAIN MENU   *"
+          "\n*****************************************")
+
+while True:
+    #MAIN MENU mode
+    main_menu()
     mode = input('Option: ')
 
     #PREPROCESS mode
     if(mode == '1'):
-        print("\n************ PREPROCESS MENU ************"
-              "\n* Select database to preprocess:        *"
-              "\n*    1. Columbia  - not implemented     *"
-              "\n*    2. MPII                            *"
-              "\n*    3. To be defined - not implemented *"
-              "\n*    Hit ENTER to return to MAIN MENU   *"
-              "\n*****************************************")
+        process_menu()
         preprocess_db = input('Option: ')
         
         if(preprocess_db == '1'):
@@ -37,13 +71,7 @@ while True:
             
     #TRAIN mode
     elif(mode == '2'):
-        print("\n*************** TRAIN MENU **************"
-              "\n* Select database to train on:          *"
-              "\n*    1. Columbia                        *"
-              "\n*    2. MPII                            *"
-              "\n*    3. To be defined - not implemented *"
-              "\n*    Hit ENTER to return to MAIN MENU   *"
-              "\n*****************************************")
+        train_menu()
         train_db = input('Option: ')
         
         if(train_db == '1'):
@@ -55,9 +83,20 @@ while True:
             print("\nTrain on MPII")
             config.database_path = config.dbpath_mpii_ak
             config.output_path = config.outpath_mpii
-            #Comment one or the other to train with AutoKeras or with a defined model
-            #train.train_ak()
-            train.train_mpii() 
+            
+            #MPII train method
+            train_method_menu()
+            train_method = input('Option: ')
+            
+            if(train_method == '1'):
+                train.train_mpii_manual() 
+            elif(train_method == '2'):
+                train.train_mpii_classic() 
+            elif(train_method =='3'):
+                train.train_ak()
+            else:
+                exit
+                
         elif(train_db == '3'):
             print("\nTrain on TBD\nNot implemented. Returning to MAIN MENU.")
         else:
@@ -65,13 +104,7 @@ while True:
             
     #PREDICT mode        
     elif(mode == '3'):
-        print("\n************** PREDICT MENU *************"
-              "\n* Select database to predict on:        *"
-              "\n*    1. Columbia  - not implemented     *"
-              "\n*    2. MPII - not implemented          *"
-              "\n*    3. To be defined - not implemented *"
-              "\n*    Hit ENTER to return to MAIN MENU   *"
-              "\n*****************************************")
+        predict_menu()
         predict_db = input('Option: ')
         
         #In predict mode a new menu in which you will need to select the predictor needs to be added
@@ -87,4 +120,3 @@ while True:
         print("Exiting...")
         break
         
-#should define all menus and then just call them. should be easier and more organized
