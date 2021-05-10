@@ -35,7 +35,8 @@ def train_method_menu():
           "\n*    1. Manual                         *"
           "\n*    2. AllClassic                     *"
           "\n*    3. AutoKeras                      *"
-          "\n*    Hit ENTER to return to MAIN MENU *"
+          "\n*    4. AutoKeras Regression           *"
+          "\n*    Hit ENTER to return to MAIN MENU  *"
           "\n****************************************")
           
 def predict_menu():
@@ -89,11 +90,13 @@ while True:
             train_method = input('Option: ')
             
             if(train_method == '1'):
-                train.train_mpii_manual() 
+                train.train_mpii_manual()
             elif(train_method == '2'):
                 train.train_mpii_classic() 
-            elif(train_method =='3'):
+            elif(train_method == '3'):
                 train.train_ak()
+            elif(train_method == '4'):
+                train.train_ak_regression()
             else:
                 exit
                 

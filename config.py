@@ -20,10 +20,10 @@ outpath_cave = Path('./output/cave')
 outpath_mpii = Path('./output/mpii')
 
 #Training config
-epochs=10
+epochs=1
 batch_size=64
-max_trials=2 #for AutoKeras
-split=5000 #for AutoKeras
+max_trials=1 #for AutoKeras
+split=5000 #for AutoKeras Img Clsf
 
 #Img settings
 #img_height = 135

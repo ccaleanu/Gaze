@@ -7,7 +7,7 @@ import autokeras as ak
 import tensorflow as tf
 
 def train_mpii_manual():
-    print("Train MPII Manual")
+    print("Train MPII: Manual")
     x_train, y_train, x_test, y_test = loaddb.load_mpii(config.dbpath_mpii)
     model = models.mpii_model()
     model.compile(optimizer=RMSprop(learning_rate=0.0001), loss=utils.degrees_mean_error, metrics=['acc'])
@@ -15,7 +15,7 @@ def train_mpii_manual():
     return 0
  
 def train_mpii_classic(): 
-    print("Train MPII AllClassic")
+    print("Train MPII: AllClassic")
     x_train, y_train, x_test, y_test = loaddb.load_mpii(config.dbpath_mpii)
     num_classes = 2
 
@@ -64,11 +64,9 @@ def train_ak():
     y_train = labels[:split]
 
     clf.fit(
-        x_train,
-        y_train,
-        # Use your own validation set.
+        x_train, y_train,
         validation_data=(x_val, y_val),
-        epochs=config.epochs,
+        epochs=config.epochs
     )
 
     # Predict with the best model.
@@ -83,6 +81,27 @@ def train_ak():
     model = clf.export_model()
 
     print(type(model))  # <class 'tensorflow.python.keras.engine.training.Model'>
-    model.save(config.output_path + "model_autokeras.h5")
+    model.save(config.output_path + "model_ak_imgClsf.h5")
+    
+    return 0
+
+def train_ak_regression():
+    print("Train MPII: AutoKeras Regression")
+    x_train, y_train, x_test, y_test = loaddb.load_mpii(config.dbpath_mpii)
+    
+    reg = ak.ImageRegressor(overwrite=True,
+                            max_trials=config.max_trials,
+                            directory=config.outpath_mpii)
+
+    reg.fit(x_train, y_train,
+            validation_data=(x_test, y_test),
+            epochs=config.epochs)
+
+    print(reg.evaluate(x_test, y_test))
+    
+    model = reg.export_model()
+    
+    print(type(model))
+    # model.save(config.out_path + "model_ak_imgRegr.h5")
     
     return 0
